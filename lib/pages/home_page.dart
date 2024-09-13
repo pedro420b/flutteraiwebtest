@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutteraiwebtest/widgets/periodictimer.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -8,6 +8,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,7 @@ class _HomePageState extends State<HomePage> {
           Container( //Body
             height: 550,
             color: Colors.amber[500],
-            child: const Center(child: Text('Body')),
+            child: const Center(child: PeriodicTimerWidget()),
           ),
           Container(//Footer
             height: 250,
