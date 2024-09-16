@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteraiwebtest/pages/login_page.dart';
 import 'package:flutteraiwebtest/pages/signup_page.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'pages/home_page.dart';
 
@@ -16,6 +17,10 @@ void main() async {
       messagingSenderId: "737332937319",
       appId: "1:737332937319:web:38b26f69881e3b071a0ac2",
     ),
+  );
+  FlutterNativeSplash.show(
+    splashScreen: MySplashScreen(),
+    duration: 3000,
   );
   runApp(const MyApp());
 }
