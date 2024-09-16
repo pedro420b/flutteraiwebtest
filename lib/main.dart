@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteraiwebtest/pages/login_page.dart';
+import 'package:flutteraiwebtest/pages/signup_page.dart';
 
 import 'pages/home_page.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'c1-prufungen-simulation',      
-      home: Login_page(),
+      home: RegistrationScreen(),
     );
   }
 }
