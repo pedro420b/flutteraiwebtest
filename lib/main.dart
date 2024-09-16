@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'c1-prufungen-simulation',      
-      home: RegistrationScreen(),
+      home: Login_page(),
     );
   }
 }
