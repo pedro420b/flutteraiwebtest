@@ -1,5 +1,4 @@
 // ignore_for_file: library_private_types_in_public_api
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 
@@ -15,7 +14,7 @@ class _PeriodicTimerWidgetState extends State<PeriodicTimerWidget> {
   int _tickCount = 0;
 
   void _startPeriodicTimer() {
-    const oneSecond = Duration(seconds: 10);
+    const oneSecond = Duration(seconds: 1);
     _periodicTimer = Timer.periodic(oneSecond, (Timer timer) {
       setState(() {
         _tickCount++;
@@ -31,19 +30,17 @@ class _PeriodicTimerWidgetState extends State<PeriodicTimerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Periodic Timer Example')),
-      body: Center(
+    return Row(
+      children: [Center(
         child: Text(
-          'Tick: $_tickCount',
-          style: const TextStyle(fontSize: 48),
+          '$_tickCount',
+          style: const TextStyle(fontSize: 12),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      TextButton(
         onPressed: _startPeriodicTimer,
-        tooltip: 'Start Periodic Timer',
         child: const Icon(Icons.timer),
-      ),
+      ),]
     );
   }
 }

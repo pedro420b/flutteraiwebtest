@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
             child: const Center(child: Text('Header')),
           ),
           Container( //Body
-            height: 550,
+            height: 50,
             color: Colors.amber[500],
             child: const Center(child: PeriodicTimerWidget()),
           ),

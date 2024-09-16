@@ -1,7 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutteraiwebtest/pages/home_page.dart';
+import 'package:flutteraiwebtest/pages/login_page.dart';
 
-void main() {
+import 'pages/home_page.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyCt8J3IbNvPkQOemJFttcDG1jZShVCmTtI",
+      authDomain: "[pruesimul.firebaseapp.com](http://pruesimul.firebaseapp.com/)",
+      projectId: "pruesimul",
+      storageBucket: "[pruesimul.appspot.com](http://pruesimul.appspot.com/)",
+      messagingSenderId: "737332937319",
+      appId: "1:737332937319:web:38b26f69881e3b071a0ac2",
+    ),
+  );
   runApp(const MyApp());
 }
 
@@ -13,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'c1-prufungen-simulation',      
-      home: HomePage(),
+      home: Login_page(),
     );
   }
 }
