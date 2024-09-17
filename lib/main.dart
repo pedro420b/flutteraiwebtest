@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteraiwebtest/pages/login_page.dart';
 import 'package:flutteraiwebtest/pages/signup_page.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutteraiwebtest/pages/splash_page.dart';
 
 import 'pages/home_page.dart';
 
@@ -18,10 +18,7 @@ void main() async {
       appId: "1:737332937319:web:38b26f69881e3b071a0ac2",
     ),
   );
-  FlutterNativeSplash.show(
-    splashScreen: MySplashScreen(),
-    duration: 3000,
-  );
+
   runApp(const MyApp());
 }
 
@@ -31,9 +28,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'c1-prufungen-simulation',      
-      home: Login_page(),
+      home: const SplashScreen(),
+      initialRoute: '/splash', // Set the initial route
+      routes: {
+        '/login': (context) => const Login_page(),
+        '/home': (context) => const HomePage(),
+        '/signup': (context) => const RegistrationScreen(),
+      },
     );
   }
 }
