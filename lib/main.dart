@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutteraiwebtest/pages/login_page.dart';
 import 'package:flutteraiwebtest/pages/signup_page.dart';
 import 'package:flutteraiwebtest/pages/splash_page.dart';
+import 'package:flutteraiwebtest/pages/BenutzerScreen.dart';
 
 import 'pages/home_page.dart';
 
@@ -33,9 +34,11 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
       initialRoute: '/splash', // Set the initial route
       routes: {
-        '/login': (context) => const Login_page(),
+        '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
         '/signup': (context) => const RegistrationScreen(),
+        '/benutzer': (context) => const Benutzerscreen(),
+
       },
     );
   }

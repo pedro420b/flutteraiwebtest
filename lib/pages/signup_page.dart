@@ -1,81 +1,20 @@
-// ignore_for_file: library_private_types_in_public_api
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutteraiwebtest/Blocs/registration_bloc.dart';
+import 'package:flutteraiwebtest/Events/registration_event.dart';
+import 'package:flutteraiwebtest/States/registration_state.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  String? _errorMessage;
-
-  bool _isValidEmail(String email) {
-  final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-  return emailRegex.hasMatch(email);
-}
-
-
-  bool _isValidPassword(String password) {
-  // Password must be at least 8 characters long, contain uppercase, lowercase, a number, and a special character
-  final passwordRegex = RegExp(
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
-  return passwordRegex.hasMatch(password);
-}
-
-
-  Future<void> register() async {
-    final email = _emailController.text.trim();
-    final password = _passwordController.text.trim();
-
-    if (!_isValidEmail(email)) {
-      setState(() {
-        _errorMessage = 'Invalid email format';
-      });
-      return;
-    }
-
-    if (_isValidPassword(password)) {
-      setState(() {
-        _errorMessage =
-            'Password must be at least 8 characters long and contain an uppercase letter, a lowercase letter, and a number.';
-      });
-      return;
-    }
-
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-      print("User registered successfully: ${userCredential.user?.email}");
-      setState(() {
-        _errorMessage = null; // Clear error message on successful registration
-      });
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        setState(() {
-          _errorMessage = 'The password provided is too weak.';
-        });
-      } else if (e.code == 'email-already-in-use') {
-        setState(() {
-          _errorMessage = 'The account already exists for that email.';
-        });
-      } else {
-        setState(() {
-          _errorMessage = 'Error: ${e.message}';
-        });
-      }
-    } catch (e) {
-      setState(() {
-        _errorMessage = e.toString();
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,31 +24,56 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
+        child: BlocProvider(
+          create: (_) => RegistrationBloc(),
+          child: BlocListener<RegistrationBloc, RegistrationState>(
+            listener: (context, state) {
+              if (state is RegistrationFailure) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.error)),
+                );
+              } else if (state is RegistrationSuccess) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Registered: ${state.email}')),
+                );
+              }
+            },
+            child: BlocBuilder<RegistrationBloc, RegistrationState>(
+              builder: (context, state) {
+                if (state is RegistrationLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(labelText: 'Email'),
+                    ),
+                    TextField(
+                      controller: _passwordController,
+                      decoration: const InputDecoration(labelText: 'Password'),
+                      obscureText: true,
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<RegistrationBloc>().add(RegisterUser(
+                            email: _emailController.text,
+                            password: _passwordController.text));
+                      },
+                      child: const Text('Register'),
+                    ),
+                    if (state is RegistrationFailure)
+                      Text(
+                        state.error,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                  ],
+                );
+              },
             ),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            if (_errorMessage != null) ...[
-              const SizedBox(height: 20),
-              Text(
-                _errorMessage!,
-                style: const TextStyle(color: Colors.red),
-              ),
-            ],
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: register,
-              child: const Text('Register'),
-            ),
-          ],
+          ),
         ),
       ),
     );

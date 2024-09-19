@@ -1,36 +1,30 @@
 import 'package:equatable/equatable.dart';
 
-class RegistrationState extends Equatable {
-  final String email;
-  final String password;
-  final String? errorMessage;
-  final bool isSubmitting;
-  final bool isSuccess;
-
-  const RegistrationState({
-    this.email = '',
-    this.password = '',
-    this.errorMessage,
-    this.isSubmitting = false,
-    this.isSuccess = false,
-  });
-
-  RegistrationState copyWith({
-    String? email,
-    String? password,
-    String? errorMessage,
-    bool? isSubmitting,
-    bool? isSuccess,
-  }) {
-    return RegistrationState(
-      email: email ?? this.email,
-      password: password ?? this.password,
-      errorMessage: errorMessage,
-      isSubmitting: isSubmitting ?? this.isSubmitting,
-      isSuccess: isSuccess ?? this.isSuccess,
-    );
-  }
+abstract class RegistrationState extends Equatable {
+  const RegistrationState();
 
   @override
-  List<Object?> get props => [email, password, errorMessage, isSubmitting, isSuccess];
+  List<Object?> get props => [];
+}
+
+class RegistrationInitial extends RegistrationState {}
+
+class RegistrationLoading extends RegistrationState {}
+
+class RegistrationSuccess extends RegistrationState {
+  final String email;
+
+  const RegistrationSuccess({required this.email});
+
+  @override
+  List<Object?> get props => [email];
+}
+
+class RegistrationFailure extends RegistrationState {
+  final String error;
+
+  const RegistrationFailure({required this.error});
+
+  @override
+  List<Object?> get props => [error];
 }
