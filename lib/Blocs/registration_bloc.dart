@@ -2,10 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutteraiwebtest/Events/registration_event.dart';
 import 'package:flutteraiwebtest/States/registration_state.dart';
+import 'package:flutteraiwebtest/Models/User_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   RegistrationBloc() : super(RegistrationInitial()) {
-    on<RegisterUser>(_onRegisterUser);  // Event-Handler für RegisterUser registrieren
+    on<RegisterUser>(_onRegisterUser);
+      // Event-Handler für RegisterUser registrieren
   }
 
   bool _isValidEmail(String email) {
@@ -42,6 +46,10 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       emit(RegistrationSuccess(email: userCredential.user!.email!));
+      SharedPreferencesWithCache pref =  await SharedPreferencesWithCache.create(cacheOptions: const SharedPreferencesWithCacheOptions( allowList: <String>{"userid"}));
+      await pref.setString("userid",userCredential.user!.uid);
+      print('User id : ${pref.getString("userid")}');
+          
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(const RegistrationFailure(

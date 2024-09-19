@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 3), () {});
     // ignore: use_build_context_synchronously
-    Navigator.pushReplacementNamed(context, '/login'); // Navigating to home
+    Navigator.pushReplacementNamed(context, '/signup'); // Navigating to home
   }
 
   @override
