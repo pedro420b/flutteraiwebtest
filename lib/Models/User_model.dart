@@ -1,25 +1,28 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   final String id;
-  final String username;
+  final String name;
   final String email;
-  final String profileImageUrl;
   final String userType;
+  final String profileImageUrl;
 
   UserModel({
     required this.id,
-    required this.username,
+    required this.name,
     required this.email,
-    required this.profileImageUrl,
     required this.userType,
+    required this.profileImageUrl,
   });
 
-  factory UserModel.fromMap(Map<String, dynamic> data, String id) {
+  factory UserModel.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return UserModel(
-      id: id,
-      username: data['username'] ?? '',
-      email: data['email'] ?? '',
-      profileImageUrl: data['profileImageUrl'] ?? '',
-      userType: data['userType'] ?? 'Basic',
+      id: doc.id,
+      name: data['name'] ?? '',
+      email: data['mail'] ?? '',
+      userType: data['userType'] ?? 'Basic', // Default userType
+      profileImageUrl: data['profileImageUrl'] ?? 'https://example.com/default-avatar.png', // Default image
     );
   }
 }
