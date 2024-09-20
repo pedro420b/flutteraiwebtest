@@ -7,9 +7,12 @@ import 'package:flutteraiwebtest/States/Profile_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfilePage extends StatelessWidget {
-   ProfilePage({super.key});
-  final CollectionReference usersCollection = FirebaseFirestore.instance.collection('users');
-  final DocumentSnapshot doc = DocumentSnapshot.
+    ProfilePage({super.key});
+
+   final db = FirebaseFirestore.instance;
+   final userss1=db.collection("users");
+
+
   
 
   @override
@@ -89,7 +92,7 @@ class ProfilePage extends StatelessWidget {
 
 class PasswordField extends StatelessWidget {
   final String label;
-  PasswordField({super.key, required this.label});
+  const PasswordField({super.key, required this.label});
 
   @override
   Widget build(BuildContext context) {
