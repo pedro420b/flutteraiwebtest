@@ -3,11 +3,12 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutteraiwebtest/Events/login_event.dart';
 import 'package:flutteraiwebtest/States/login_state.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:flutteraiwebtest/Models/User_model.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginInitial()) {
     on<LoginButtonPressed>(_onLoginButtonPressed);
+
   }
 
   Future<void> _onLoginButtonPressed(
@@ -20,9 +21,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               email: event.email.trim(),
               password: event.password.trim());
       emit(LoginSuccess(email: userCredential.user!.email!));
-      SharedPreferencesWithCache pref =  await SharedPreferencesWithCache.create(cacheOptions: const SharedPreferencesWithCacheOptions( allowList: <String>{"userid"}));
+      User u1= User(userCredential.user!.uid,userCredential.user!.displayName,userCredential.user!.email,"https://fastly.picsum.photos/id/141/200/200.jpg?hmac=cy5VCF6f8Mq7cum6d-R7m7mbrGC0wgUzI4UpSX_qkIk");
 
-      print('User id : ${pref.getString("userid")}');
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         emit(LoginFailure(error: 'No user found for that email.'));
