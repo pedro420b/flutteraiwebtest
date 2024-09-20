@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutteraiwebtest/pages/login_page.dart';
+import 'package:flutteraiwebtest/pages/profilepage.dart';
 import 'package:flutteraiwebtest/pages/signup_page.dart';
 import 'package:flutteraiwebtest/pages/splash_page.dart';
-import 'package:flutteraiwebtest/pages/BenutzerScreen.dart';
 
 import 'pages/home_page.dart';
 
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
         '/signup': (context) => const RegistrationScreen(),
-        '/benutzer': (context) => const UserProfilePage(userId: '',),
+        '/benutzerseite': (context) =>   ProfilePage(),
 
       },
     );

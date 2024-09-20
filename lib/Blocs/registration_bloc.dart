@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutteraiwebtest/Events/registration_event.dart';
 import 'package:flutteraiwebtest/States/registration_state.dart';
-import 'package:flutteraiwebtest/Models/User_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 

@@ -21,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               email: event.email.trim(),
               password: event.password.trim());
       emit(LoginSuccess(email: userCredential.user!.email!));
-      User u1= User(userCredential.user!.uid,userCredential.user!.displayName,userCredential.user!.email,"https://fastly.picsum.photos/id/141/200/200.jpg?hmac=cy5VCF6f8Mq7cum6d-R7m7mbrGC0wgUzI4UpSX_qkIk");
+
 
 
     } on FirebaseAuthException catch (e) {

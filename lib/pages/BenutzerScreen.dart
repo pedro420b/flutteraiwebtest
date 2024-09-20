@@ -1,12 +1,35 @@
 import 'package:flutter/material.dart';
 
 
-class UserProfilePage extends StatelessWidget {
-  final String userId;
+class Benutzerscreen extends StatelessWidget {
 
-  const UserProfilePage({super.key, required this.userId});
+  const Benutzerscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: const Text( " welk Userx "),),
+      body: const Column(
+        children: [
+
+          Row(
+            children: [
+              Text("name:"),
+              Text('data')
+            ],
+          ),
+          
+          Row(
+            children: [
+              Text("mail:"),
+              Text("exampll:"),
+            ],
+          ),
+        ],
+
+      ),
+
+
+      
+    );
   }}

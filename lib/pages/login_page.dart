@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
             if (state is LoginSuccess) {
               // Navigiere zum nächsten Screen oder zeige eine Erfolgsnachricht an
               print("Logged in successfully: ${state.email}");
-              Navigator.pushReplacementNamed(context,"/benutzer");
+              Navigator.pushReplacementNamed(context,"/benutzerseite");
 
 
             } else if (state is LoginFailure) {
