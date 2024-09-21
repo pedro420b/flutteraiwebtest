@@ -4,6 +4,7 @@ import 'package:flutteraiwebtest/pages/login_page.dart';
 import 'package:flutteraiwebtest/pages/profilepage.dart';
 import 'package:flutteraiwebtest/pages/signup_page.dart';
 import 'package:flutteraiwebtest/pages/splash_page.dart';
+import 'package:flutteraiwebtest/pruefungsimu/beispiel.dart';
 
 import 'pages/home_page.dart';
 
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
         '/signup': (context) => const RegistrationScreen(),
-        '/benutzerseite': (context) =>   ProfilePage(),
+        '/benutzerseite': (context) =>  const  ProfilePage(),
+        '/beispiel':(context) => const Beispiel(),
 
       },
     );

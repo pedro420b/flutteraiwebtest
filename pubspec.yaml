@@ -19,6 +19,7 @@ dependencies:
   bloc: ^8.1.4
   shared_preferences: ^2.3.2
   cloud_firestore: ^5.4.2
+  flutter_tts: ^4.0.2
 
 dev_dependencies:
   flutter_test:
