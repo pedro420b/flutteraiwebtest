@@ -20,6 +20,7 @@ dependencies:
   shared_preferences: ^2.3.2
   cloud_firestore: ^5.4.2
   flutter_tts: ^4.0.2
+  circular_countdown_timer: ^0.2.4
 
 dev_dependencies:
   flutter_test:
