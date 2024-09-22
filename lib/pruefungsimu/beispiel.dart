@@ -48,6 +48,7 @@ class _BeispielState extends State<Beispiel> {
                 CircularCountDownTimer(
                   width: 40,
                    height: 30,
+                   autoStart: false,
                    controller: _controller,
                     duration: 100,
                      fillColor: const Color.fromARGB(255, 115, 225, 121),
@@ -63,8 +64,22 @@ class _BeispielState extends State<Beispiel> {
               padding: const EdgeInsets.all(20.0),
               child: Center(
                 child: Center(child:  Text(teil1tetxtbeispiel)),
+              
               ),
-            )
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            FloatingActionButton.extended(
+              onPressed: _controller.start,
+              label:const Text("Anfangen"),
+              icon: const Icon(Icons.start_rounded),
+
+
+            backgroundColor: const Color.fromARGB(233, 115, 106, 115),
+            
+            ),
+            
 
         ],
       ),
