@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutteraiwebtest/Models/teiltext.dart';
+import 'package:flutteraiwebtest/widgets/lesenwidget/teil1dropdownwidget.dart';
 
 class Beispiel extends StatefulWidget {
   const Beispiel({super.key});
@@ -78,6 +79,7 @@ class _BeispielState extends State<Beispiel> {
               height: 20,
             )
             ,
+            const DropdownButtonExample(),
             
           
           ]
