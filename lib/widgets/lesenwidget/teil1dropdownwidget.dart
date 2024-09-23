@@ -1,40 +1,44 @@
 import 'package:flutter/material.dart';
 
+class Teil1DropDown extends StatefulWidget {
+  final List<String> items;
+  final String hintText;
+  final Function(String?)? onChanged;
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
-
-
-class DropdownButtonExample extends StatefulWidget {
-  const DropdownButtonExample({super.key});
+  const Teil1DropDown({super.key, 
+    required this.items,
+    required this.hintText,
+    this.onChanged,
+  });
 
   @override
-  State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
+  // ignore: library_private_types_in_public_api
+  _Teil1DropDownState createState() => _Teil1DropDownState();
 }
 
-class _DropdownButtonExampleState extends State<DropdownButtonExample> {
-  String dropdownValue = list.first;
+class _Teil1DropDownState extends State<Teil1DropDown> {
+  String? _selectedItem;
 
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.abc_rounded),
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: list.map<DropdownMenuItem<String>>((String value) {
+      value: _selectedItem,
+      hint: Text(widget.hintText),
+      isExpanded: false,
+      items: widget.items.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),
         );
       }).toList(),
+      onChanged: (String? newValue) {
+        setState(() {
+          _selectedItem = newValue;
+        });
+        if (widget.onChanged != null) {
+          widget.onChanged!(newValue);
+        }
+      },
     );
   }
 }
