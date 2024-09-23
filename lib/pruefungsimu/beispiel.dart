@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutteraiwebtest/Models/teiltext.dart';
+import 'package:flutteraiwebtest/pruefungsimu/quizpage.dart';
 class Beispiel extends StatefulWidget {
   const Beispiel({super.key});
 
@@ -26,8 +27,7 @@ class _BeispielState extends State<Beispiel> {
         title: const Text("Sim Beispiel"),
       ),
       body: Column(
-        children: <Widget> [
-          Padding(
+        children:[Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
               
@@ -36,21 +36,24 @@ class _BeispielState extends State<Beispiel> {
                   "Teil 1",style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  width: 100,
+                  width: 10,
                 )
                 ,
                   const Text(
                   "Vorgeschlagene Arbeitszeit: 10 Minuten",style: TextStyle(fontWeight: FontWeight.normal),
                 ),
+
                 const SizedBox(
                   width: 20,
                 ),
                 CircularCountDownTimer(
-                  width: 40,
-                   height: 30,
+                  width: 70,
+                   height: 70,
                    autoStart: false,
                    controller: _controller,
-                    duration: 100,
+                    duration: 600,
+                    isTimerTextShown: true,
+                    isReverse: true,
                      fillColor: const Color.fromARGB(255, 115, 225, 121),
                       ringColor: const Color.fromARGB(255, 233, 66, 63))
               ],
@@ -63,7 +66,12 @@ class _BeispielState extends State<Beispiel> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Center(
-                child: Center(child:  Text(teil1tetxtbeispiel)),
+                child: ListView(
+                  children: [
+                    Text(teil1tetxtbeispiel),
+                     const QuizPage(),
+                    
+                    ]),
               
               ),
             ),
