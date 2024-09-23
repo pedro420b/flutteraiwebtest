@@ -80,7 +80,55 @@ class _BeispielState extends State<Beispiel> {
             )
             ,
             const Teil1DropDown(items: ["item1","item2"],hintText: "Beispiel 0",),
-            
+            //////////////////////////////////////////////////////////////////////
+          Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: RichText(
+            text: TextSpan(
+              style: const TextStyle(color: Colors.black, fontSize: 16),
+              children: [
+                const TextSpan(
+                  text: 'Lorem Ipsum is simply dummy text of the printing and ',
+                ),
+                // Use a WidgetSpan to embed the dropdown in the text
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: Teil1DropDown(
+                    items: ['typesetting', 'designing', 'developing'],
+                    hintText: 'Select',
+                    onChanged: (value) {
+                      print('Selected: $value');
+                    },
+                  ),
+                ),
+                const TextSpan(
+                  text:
+                      ' industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
+                ),
+                const TextSpan(
+                  text: ' Here is another gap: ',
+                ),
+                // Another Dropdown
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: Teil1DropDown(
+                    items: ['book', 'tree', 'car', 'plane'],
+                    hintText: 'Select',
+                    onChanged: (value) {
+                      print('Selected: $value');
+                    },
+                  ),
+                ),
+                const TextSpan(
+                  text:
+                      ' has been in use for over 500 years and is still used today.',
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
           
           ]
         ),
