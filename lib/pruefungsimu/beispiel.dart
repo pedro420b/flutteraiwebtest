@@ -18,12 +18,13 @@ class _BeispielState extends State<Beispiel> {
   FlutterTts flutterTts=FlutterTts();
   Future<void> configureTts() async {
   await flutterTts.setLanguage('de-DE');
-  await flutterTts.setSpeechRate(1.0);
+  await flutterTts.setSpeechRate(1.2);
   await flutterTts.setVolume(1.0);
 }
 
 void speakText(String text) async {
-  await flutterTts.speak(textToSpeak);
+  configureTts();
+  await flutterTts.speak(text);
   print(await flutterTts.getVoices);
 }
 
@@ -48,10 +49,10 @@ void stopSpeaking() async {
         body: Column(
           children: <Widget>[
             ElevatedButton(onPressed:(){
-              speakText(textToSpeak);
+              speakText(teil1tetxtbeispiel);
 
             } ,
-             child: const Text("txt beispiel"))
+             child: const Text("Ausprechen"))
             ,
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -115,8 +116,8 @@ void stopSpeaking() async {
             text: TextSpan(
               style: const TextStyle(color: Colors.black, fontSize: 16),
               children: [
-                const TextSpan(
-                  text: 'Lorem Ipsum is simply dummy text of the printing and ',
+                TextSpan(
+                  text: teil1tetxtbeispiel,
                 ),
                 // Use a WidgetSpan to embed the dropdown in the text
                 WidgetSpan(
@@ -129,9 +130,23 @@ void stopSpeaking() async {
                     },
                   ),
                 ),
-                const TextSpan(
-                  text:
-                      ' industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
+                TextSpan(
+                  text: teil1tetxtbeispiel,
+                ),
+                // Use a WidgetSpan to embed the dropdown in the text
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: Teil1DropDown(
+                    items: ['typesetting', 'designing', 'developing'],
+                    hintText: 'Select',
+                    onChanged: (value) {
+                      print('Selected: $value');
+                    },
+                  ),
+                )
+                ,
+                 TextSpan(
+                  text:teil1tetxtbeispiel,
                 ),
                 const TextSpan(
                   text: ' Here is another gap: ',
