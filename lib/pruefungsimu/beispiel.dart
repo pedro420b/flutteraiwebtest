@@ -14,8 +14,28 @@ class Beispiel extends StatefulWidget {
 enum TtsState { playing, stopped, paused, continued }
 
 class _BeispielState extends State<Beispiel> {
-  FlutterTts tts1 = FlutterTts();
+  String textToSpeak = "Hallo, testing the test?";
+  FlutterTts flutterTts=FlutterTts();
+  Future<void> configureTts() async {
+  await flutterTts.setLanguage('de-DE');
+  await flutterTts.setSpeechRate(1.0);
+  await flutterTts.setVolume(1.0);
+}
 
+void speakText(String text) async {
+  await flutterTts.speak(textToSpeak);
+  print(await flutterTts.getVoices);
+}
+
+void stopSpeaking() async {
+  await flutterTts.stop();
+}  
+  
+
+  
+  
+  
+                                                                   
   final CountDownController _controller = CountDownController();
 
   @override
@@ -27,6 +47,12 @@ class _BeispielState extends State<Beispiel> {
         ),
         body: Column(
           children: <Widget>[
+            ElevatedButton(onPressed:(){
+              speakText(textToSpeak);
+
+            } ,
+             child: const Text("txt beispiel"))
+            ,
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
@@ -63,6 +89,7 @@ class _BeispielState extends State<Beispiel> {
                     label: const Text("Anfangen"),
                     icon: const Icon(Icons.timer),
                   ),
+                  
                 ],
               ),
             ),
