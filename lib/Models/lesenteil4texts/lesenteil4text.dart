@@ -177,7 +177,7 @@ class _Teil4QuestionsLayoutState extends State<Teil4QuestionsLayout> {
               // Erster Container
               Container(
                 width: MediaQuery.sizeOf(context).width/2.5,
-                height: MediaQuery.sizeOf(context).height/2,
+                height: MediaQuery.sizeOf(context).height/0.75,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 0.75), // Schwarzer Rand
                   borderRadius: BorderRadius.circular(10), // Abgerundete Ecken
@@ -186,18 +186,61 @@ class _Teil4QuestionsLayoutState extends State<Teil4QuestionsLayout> {
               ),
               // Zweiter Container für den Text
               Positioned.fill(
-                child: Container(
-                  alignment: Alignment.center, // Zentriere den Text
-                  child:const Text(
-                    teil1tetxtbeispiel,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            children: const [
+              FrageItem(
+                title: 'B3',
+                question:
+                    'Das Internet bietet viele Vorteile, die gern genutzt werden.',
+                options: ['a', 'b', 'c', 'x'],
+              ),
+              FrageItem(
+                title: 'A24',
+                question:
+                    'Angriffe auf sensible Daten verursachen zunehmend finanzielle Verluste.',
+                options: ['a', 'b', 'c', 'x'],
+              ),
+              FrageItem(
+                title: 'A25',
+                question:
+                    'Reflektiertes Nutzerverhalten kann dazu beitragen, die Verbreitung von Daten einzuschränken.',
+                options: ['a', 'b', 'c', 'x'],
+              ),
+              FrageItem(
+                title: 'A26',
+                question:
+                    'Unternehmen, die nicht ausreichend für Datenschutz sorgen, werden Kundinnen und Kunden verlieren.',
+                options: ['a', 'b', 'c', 'x'],
+              ),
+              FrageItem(
+                title: 'A27',
+                question:
+                    'Dank immenser Datenmengen können Unternehmen individuelle Kundenangebote erstellen.',
+                options: ['a', 'b', 'c', 'x'],
+              ),
+              FrageItem(
+                title: 'A28',
+                question:
+                    'Inhaber von Internetseiten wollen effizient zum Schutz der Bürgerinnen und Bürger beitragen.',
+                options: ['a', 'b', 'c', 'x'],
+              ),
+              FrageItem(
+                title: 'A29',
+                question:
+                    'Trotz gegenteiliger Äußerungen gehen Nutzerinnen und Nutzer sorglos mit persönlichen Angaben um.',
+                options: ['a', 'b', 'c', 'x'],
+              ),
+              FrageItem(
+                title: 'A30',
+                question:
+                    'Kostenlose Dienstleistungen zielen auf die Gewinnung persönlicher Daten.',
+                options: ['a', 'b', 'c', 'x'],
+              ),
+            ],
+          ),
+        ),
               ),
             ],
           ),
@@ -209,5 +252,69 @@ class _Teil4QuestionsLayoutState extends State<Teil4QuestionsLayout> {
         ],
       ),
    ] ));
+  }
+}
+
+class FrageItem extends StatefulWidget {
+  final String title;
+  final String question;
+  final List<String> options;
+
+  const FrageItem({super.key, 
+    required this.title,
+    required this.question,
+    required this.options,
+  });
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _FrageItemState createState() => _FrageItemState();
+}
+
+class _FrageItemState extends State<FrageItem> {
+  String? _selectedOption;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            color: Colors.grey[300],
+            child: Text(
+              widget.title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              widget.question,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
+          Column(
+            children: widget.options
+                .map((option) => RadioListTile<String>(
+                      title: Text(option),
+                      value: option,
+                      groupValue: _selectedOption,
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedOption = value;
+                        });
+                      },
+                    ))
+                .toList(),
+          ),
+        ],
+      ),
+    );
   }
 }
