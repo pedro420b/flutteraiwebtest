@@ -113,14 +113,14 @@ class _Teil2QuestionsLayoutState extends State<Teil2QuestionsLayout> {
                 children: [
                   Text(
                     'Frage ${questionIndex + 1}:',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     question.questionText,
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   // Display all the answers as radio buttons
                   ...List.generate(question.answers.length, (answerIndex) {
                     return ListTile(
