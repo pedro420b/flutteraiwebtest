@@ -309,11 +309,20 @@ void stopSpeaking() async {
                     ],
                   ),
                 
-                const Padding(
-                      padding: EdgeInsets.all(17.0),
+                Padding(
+                      padding: const EdgeInsets.all(17.0),
                       child: Column(
                         children: [
-                          Text(lesenteil2rawtext)
+                          const Text(lesenteil2rawtext),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Container(
+                            color:const Color.fromARGB(255, 116, 131, 139),
+                            height: 700,
+                            child: const Teil2QuestionsLayout(),
+                          )
+                          ,
                         ],
                       ),                    ), ],
               ),
