@@ -38,15 +38,28 @@ class _BeispielState extends State<Beispiel> {
   final CountDownController _controllerteil1 = CountDownController();
   final CountDownController _controllerteil2 = CountDownController();
   final CountDownController _controllerteil3 = CountDownController();
-  final CountDownController _controllerteil4 = CountDownController();
-
+  final CountDownController _controllerteil4 = CountDownController();  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Sim Beispiel"),
+          bottom: const TabBar(
+            tabs: <Widget>[
+              Tab(
+                icon: Icon(Icons.book_rounded),
+              ),
+              Tab(
+                icon: Icon(Icons.speaker),
+              ),
+              Tab(
+                icon: Icon(Icons.phone_in_talk_rounded),
+              ),
+            ],
+          ),
         ),
+        
         body: ListView(children: <Widget>[
           ElevatedButton(
             onPressed: () {
