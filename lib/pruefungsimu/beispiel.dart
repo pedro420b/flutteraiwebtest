@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutteraiwebtest/Models/lesenteil1texts/lesenteil1text.dart';
+import 'package:flutteraiwebtest/Models/lesenteil2texts/lesenteil2text.dart';
 import 'package:flutteraiwebtest/Models/teiltext.dart';
 import 'package:flutteraiwebtest/widgets/lesenwidget/teil1dropdownwidget.dart';
 
@@ -38,7 +39,10 @@ void stopSpeaking() async {
   
   
                                                                    
-  final CountDownController _controller = CountDownController();
+  final CountDownController _controllerteil1 = CountDownController();
+  final CountDownController _controllerteil2 = CountDownController();
+  final CountDownController _controllerteil3 = CountDownController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +86,7 @@ void stopSpeaking() async {
                       autoStart: false,
                       isTimerTextShown: true,
                       isReverse: true,
-                      controller: _controller,
+                      controller: _controllerteil1,
                       duration: 600,
                       fillColor: const Color.fromARGB(255, 3, 4, 3),
                       ringColor: const Color.fromARGB(255, 233, 66, 63)),
@@ -90,7 +94,7 @@ void stopSpeaking() async {
                         width: 20,
                       ),
                   FloatingActionButton.extended(
-                    onPressed: _controller.start,
+                    onPressed: _controllerteil1.start,
                     label: const Text("Anfangen"),
                     icon: const Icon(Icons.timer),
                   ),
@@ -245,6 +249,76 @@ void stopSpeaking() async {
         ),
       ),
           
+          ///////////////////////////////////////////////////////////Teil2anfang////////
+          Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Teil 2",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                width: 100,
+                              ),
+                              Text(
+                                "Vorgeschlagene Arbeitszeit: 20 Minuten",
+                                style: TextStyle(fontWeight: FontWeight.normal),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Sie lesen im Internet einen Artikel über eine Studie zur Handynutzung in Familien. Wählen Sie bei jeder Aufgabe die richtige Lösung.",
+                            style: TextStyle(fontWeight: FontWeight.normal),
+                          ),
+                         
+                        ],
+                        
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      CircularCountDownTimer(
+                          width: 70,
+                          height: 70,
+                          autoStart: false,
+                          isTimerTextShown: true,
+                          isReverse: true,
+                          controller: _controllerteil2,
+                          duration: 1200,
+                          fillColor: const Color.fromARGB(255, 3, 4, 3),
+                          ringColor: const Color.fromARGB(255, 233, 66, 63)),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                      FloatingActionButton.extended(
+                        onPressed: _controllerteil2.start,
+                        label: const Text("Anfangen"),
+                        icon: const Icon(Icons.timer),
+                      ),
+                      
+                    ],
+                  ),
+                
+                const Padding(
+                      padding: EdgeInsets.all(17.0),
+                      child: Column(
+                        children: [
+                          Text(lesenteil2rawtext)
+                        ],
+                      ),                    ), ],
+              ),
+            ),
+            
           ]
         ),
       ),
