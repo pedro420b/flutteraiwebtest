@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutteraiwebtest/Models/lesenteil1texts/lesenteil1text.dart';
+//import 'package:flutteraiwebtest/Models/lesenteil1texts/lesenteil1text.dart';
 import 'package:flutteraiwebtest/Models/teiltext.dart';
 
 // Model for the speaker's statements and questions
