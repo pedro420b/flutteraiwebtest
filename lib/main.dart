@@ -5,6 +5,7 @@ import 'package:flutteraiwebtest/pages/profilepage.dart';
 import 'package:flutteraiwebtest/pages/signup_page.dart';
 import 'package:flutteraiwebtest/pages/splash_page.dart';
 import 'package:flutteraiwebtest/pruefungsimu/beispiel.dart';
+import 'package:flutteraiwebtest/pruefungsimu/hoeren.dart';
 
 import 'pages/home_page.dart';
 
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const RegistrationScreen(),
         '/benutzerseite': (context) =>  const  ProfilePage(),
         '/beispiel':(context) => const Beispiel(),
+        '/hoeren':(context) => const ListeningTaskScreen(),
         
 
       },

@@ -5,7 +5,7 @@ import 'package:flutteraiwebtest/Models/lesenteil1texts/lesenteil1text.dart';
 import 'package:flutteraiwebtest/Models/lesenteil2texts/lesenteil2text.dart';
 import 'package:flutteraiwebtest/Models/lesenteil4texts/lesenteil4text.dart';
 import 'package:flutteraiwebtest/Models/teiltext.dart';
-import 'package:flutteraiwebtest/widgets/TabBarWidget.dart';
+//import 'package:flutteraiwebtest/widgets/TabBarWidget.dart';
 import 'package:flutteraiwebtest/widgets/lesenwidget/teil1dropdownwidget.dart';
 import 'package:dynamic_tabbar/dynamic_tabbar.dart';
 
@@ -41,8 +41,9 @@ class _BeispielState extends State<Beispiel> {
   final CountDownController _controllerteil2 = CountDownController(); 
   final CountDownController _controllerteil3 = CountDownController();
   final CountDownController _controllerteil4 = CountDownController();  
-  final  dynamicTabs =<TabData>[ TabData(index: 1, title: Tab(), content: const Icon(Icons.text_snippet))];
-  final  onTabControllerUpdated = onTabControllerUpdated();
+  final  dynamicTabs =<TabData>[ TabData(index: 1, title:  const Tab(
+    text: "Tabtext beispiel",
+  ), content: const Icon(Icons.text_snippet))];
 
   
   @override
@@ -51,7 +52,7 @@ class _BeispielState extends State<Beispiel> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Sim Beispiel"),
-          bottom: DynamicTabBarWidget(dynamicTabs: dynamicTabs, onTabControllerUpdated: onTabControllerUpdated),
+          bottom: DynamicTabBarWidget(dynamicTabs: dynamicTabs, onTabControllerUpdated: (controller) {}),
         ),
         
         body: ListView(children: <Widget>[

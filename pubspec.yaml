@@ -23,6 +23,7 @@ dependencies:
   circular_countdown_timer: ^0.2.4
   choice: ^2.3.2
   dynamic_tabbar: ^1.0.8
+  audioplayers: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +35,7 @@ flutter:
   # Hier werden Assets hinzugefügt:
   assets:
     - assets/images/splash.gif
+    - assets/audios/annaaudio.mp3
 
 flutter_native_splash:
   image: assets/images/splash.gif
